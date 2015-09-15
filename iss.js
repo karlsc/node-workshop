@@ -45,6 +45,10 @@ function getIssData(lat1,lon1){
     });
 }
 
+Number.prototype.toRadians = function() {
+return this * Math.PI / 180;
+};
+
 function distanceBetweenYouAndIss(lat1,lon1,lat2,lon2){
     
     var R = 6371000; // metres
@@ -60,5 +64,5 @@ function distanceBetweenYouAndIss(lat1,lon1,lat2,lon2){
 
     var d = R * c;
     
-        console.log(d);
+        console.log("Your are now "+Math.floor(d/10)/100+"km away of the International Space Station.");
 }
