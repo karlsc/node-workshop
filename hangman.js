@@ -1,7 +1,8 @@
 var listOfWords = ["grass","rocks","water","english","dinosaur","dinner","robot","guitar","school","camp","toy","table","juice",
                    "night","train","doctor","rabbit","dance","computer","phone","brick","hockey","sport","poster","lamp","door",
                    "javascript","html","css","internet","house","magic","librairy","bread","butter","snow","summer","happy"];
-var randomWord = listOfWords[Math.floor(Math.random() * listOfWords.length)];
+var randomWord = "magic"; //listOfWords[Math.floor(Math.random() * listOfWords.length)];
+
 var letterComp = [];
 
 for(var i = 0 ; i < randomWord.length ; i++){
@@ -11,6 +12,7 @@ for(var i = 0 ; i < randomWord.length ; i++){
 
 letterComp = letterComp.split("");
 
+//
 console.log('Find the secret word by making less than 6 wrong guesses!');
 
 var prompt = require('prompt');
@@ -23,7 +25,12 @@ function getSelection(fails,guesses){
 
     if(!err){
         
-        if(fails < 5) {
+        if(fails === 6) {
+            console.log("You guessed wrong!");
+            hangmanOutput(fails);
+            console.log(letterComp);
+            console.log("You failed to find the secret word. The answer was '"+randomWord+"'.");
+        } else {
             console.log("Try #"+guesses+": "+result.letter);
         
             for(var i = 0 ; i < randomWord.length ; i++){
@@ -60,11 +67,7 @@ function getSelection(fails,guesses){
             hangmanOutput(fails);
             console.log(letterComp);
             return getSelection(fails,guesses+1);
-        } else {
-            console.log("You guessed wrong!");
-            hangmanOutput(6);
-            console.log("You failed to find the secret word. The answer was '"+randomWord+"'.");
-        }     
+        }
     } else {
         console.log("Error: "+err);
     }
